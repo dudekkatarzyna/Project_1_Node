@@ -12,7 +12,6 @@ let connection = mysql.createConnection({
     database: 'shopping_center'
 });
 
-function connect() {
     connection.connect(function (err) {
         if (err) {
             return console.error('error: ' + err.message);
@@ -20,8 +19,6 @@ function connect() {
 
         console.log('Connected to the MySQL server.');
     });
-
-}
 
 function destroyConnection() {
     connection.end(function (err) {
@@ -35,7 +32,6 @@ function destroyConnection() {
 // A sample route
 app.get('/', (req, res) => res.send('Hello World!'))
 app.get('/getAll', (req, res) => {
-    connect()
     connection.query('SELECT * FROM SensorData ORDER BY id DESC LIMIT 30', function (err, rows) {
         if (err) {
         } else
@@ -45,7 +41,6 @@ app.get('/getAll', (req, res) => {
    // destroyConnection()
 })
 app.get('/getShops', (req, res) => {
-    connect()
     connection.query('SELECT * FROM Shop', function (err, rows) {
         if (err) {
         } else

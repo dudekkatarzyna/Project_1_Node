@@ -43,7 +43,7 @@ function destroyConnection() {
 // A sample route
 app.get('/', (req, res) => res.send('Hello World!'))
 app.get('/getAll', (req, res) => {
-    connection.query('SELECT * FROM SensorData ORDER BY id DESC LIMIT 30', function (err, rows) {
+    connection.query('SELECT * FROM SensorData d inner join Shop s on d.ShopID=s.id ORDER BY d.id DESC LIMIT 30', function (err, rows) {
         if (err) {
         } else
             res.send(rows)

@@ -3,6 +3,7 @@ const express = require('express')
 
 // Create Express app
 const app = express()
+app.options('*', cors()) // include before other routes
 
 let mysql = require('mysql');
 let connection = mysql.createConnection({

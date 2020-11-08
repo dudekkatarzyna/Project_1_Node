@@ -42,7 +42,7 @@ app.get('/getAll', (req, res) => {
             res.send(rows)
     })
 
-    destroyConnection()
+   // destroyConnection()
 })
 app.get('/getShops', (req, res) => {
     connect()
@@ -52,7 +52,8 @@ app.get('/getShops', (req, res) => {
             res.send(rows)
     })
 
-    destroyConnection()})
+  //  destroyConnection()
+    })
 
 // Start the Express server
 app.listen(8080, () => console.log('Server running on port 8080!'))

@@ -1,5 +1,6 @@
 // app.js
 const express = require('express')
+const cors = require('cors')
 
 // Create Express app
 const app = express()

@@ -14,7 +14,6 @@ const corsOptions = {
 app.use(cors(corsOptions)) // include before other routes
 
 
-
 let mysql = require('mysql');
 let connection = mysql.createConnection({
     host: 'shopping-ceneter-1.cpyweoetxkin.us-east-1.rds.amazonaws.com',
@@ -23,13 +22,13 @@ let connection = mysql.createConnection({
     database: 'shopping_center'
 });
 
-    connection.connect(function (err) {
-        if (err) {
-            return console.error('error: ' + err.message);
-        }
+connection.connect(function (err) {
+    if (err) {
+        return console.error('error: ' + err.message);
+    }
 
-        console.log('Connected to the MySQL server.');
-    });
+    console.log('Connected to the MySQL server.');
+});
 
 function destroyConnection() {
     connection.end(function (err) {
@@ -48,8 +47,13 @@ app.get('/getAll', (req, res) => {
         } else
             res.send(rows)
     })
-
-   // destroyConnection()
+})
+app.get('/Shop/:id', (req, res) => {
+    connection.query('SELECT * FROM Shop where id=' + req.params.id, function (err, rows) {
+        if (err) {
+        } else
+            res.send(rows)
+    })
 })
 app.get('/getShops', (req, res) => {
     connection.query('SELECT * FROM Shop', function (err, rows) {
@@ -57,9 +61,7 @@ app.get('/getShops', (req, res) => {
         } else
             res.send(rows)
     })
-
-  //  destroyConnection()
-    })
+})
 
 // Start the Express server
 app.listen(8080, () => console.log('Server running on port 8080!'))
